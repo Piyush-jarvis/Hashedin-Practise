@@ -64,6 +64,12 @@ void deleteNode(Node* &tail, int value)
            curr = curr->next;
         }
         prev->next = curr->next;
+        // one node linked list
+        if(curr == prev)
+        {
+            tail = NULL;
+        }
+        // >= 2 node linked list
         if(tail == curr)
         {
             tail = prev;
@@ -79,6 +85,10 @@ void printLinkedList(Node* &tail)
     Node* temp = tail;
     // do while isliye use lenge jisse woh ek baar atleast print ho
     //agar apn while use lenge toh sabse pehle hi condition false hop jayegi to isko overcome karne k liye apn do while use lenege
+    if(tail == NULL)
+    {
+        cout <<"List is empty" << endl;
+    }
     do
     {
         cout << tail->data << " ";
@@ -97,20 +107,20 @@ int main(){
     cout <<"Insertion in circular linked list"<< endl;
     insertNode(tail,10, 25);//head
     printLinkedList(tail);
-    insertNode(tail,25, 22);//head
-    printLinkedList(tail);
-    insertNode(tail,22, 26);//head
-    printLinkedList(tail);
-    insertNode(tail,26,42);//head
-    printLinkedList(tail);
-    insertNode(tail,25, 52);//head
-    printLinkedList(tail);    
-    deleteNode(tail,22);
-    printLinkedList(tail);
+    // insertNode(tail,25, 22);//head
+    // printLinkedList(tail);
+    // insertNode(tail,22, 26);//head
+    // printLinkedList(tail);
+    // insertNode(tail,26,42);//head
+    // printLinkedList(tail);
+    // insertNode(tail,25, 52);//head
+    // printLinkedList(tail);    
     deleteNode(tail,25);
     printLinkedList(tail);
-    deleteNode(tail,42);
-    printLinkedList(tail);
+    // deleteNode(tail,25);
+    // printLinkedList(tail);
+    // deleteNode(tail,42);
+    // printLinkedList(tail);
 
     return 0;
 }
