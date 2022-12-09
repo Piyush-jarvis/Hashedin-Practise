@@ -109,7 +109,6 @@ void deletionOfNode(int position, Node* &head, Node* &tail)
         curr->next = NULL;
         delete curr;
     }
-
 }
 
 //length of a linked list 
