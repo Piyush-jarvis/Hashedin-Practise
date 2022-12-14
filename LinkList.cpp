@@ -136,6 +136,28 @@ void printLinkedList(Node *&head)
     cout << endl;
 }
 
+// LOOP DETECTION
+bool detectLoop(Node* head)
+{
+    if(head == NULL)
+    {
+        return false;
+    }
+    map<Node*, bool> visited;
+    Node* temp = head;
+    while (temp != NULL)
+    {
+        if(visited[temp] == true)
+        {
+            cout <<"Loop is present on : " << temp->data<< endl;
+            return true;
+        }
+        visited[temp] = true;
+        temp = temp->next;
+    }
+    return false;
+}
+
 int main()
 {
     Node *node1 = new Node(0);
@@ -183,6 +205,20 @@ int main()
     printLinkedList(head);
     cout <<"Head data : "<< head->data << endl;
     cout <<"Tail data : "<< tail->data << endl;
+
+    tail->next = head->next;
+    // cout <<"Head data : "<< head->data << endl;
+    // cout <<"Tail data : "<< tail->data << endl;
+    // printLinkedList(head);
+
+    if(detectLoop(head))
+    {
+        cout <<"Loop is Present" << endl;
+    }
+    else
+    {
+        cout <<"Loop is not present" << endl;
+    }
 
 
     cout <<"\nThe Length of a Linked List is: " << lengthofLinkedList(head) << endl;
