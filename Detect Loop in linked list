@@ -1,6 +1,3 @@
-// { Driver Code Starts
-//Initial template code for C++
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -25,10 +22,6 @@ void loopHere(Node* head, Node* tail, int position)
         walk = walk->next;
     tail->next = walk;
 }
-
-
- // } Driver Code Ends
-//User function template for C++
 
 /*
 
@@ -91,8 +84,6 @@ class Solution
 };
 
 
-// { Driver Code Starts.
-
 int main()
 {
     int t;
@@ -125,4 +116,3 @@ int main()
     }
 	return 0;
 }
-  // } Driver Code Ends
