@@ -1,0 +1,15 @@
+void removeloop(Node* head)
+{
+    if(head == NULL)
+    {
+        return;
+    }
+
+    Node* startNode = getStatringNode(head);
+    Node* temp = startNode;
+    while (temp->next != startNode)
+    {
+        temp = temp->next;
+    }
+    temp->next = NULL;
+}
