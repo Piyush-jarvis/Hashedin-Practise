@@ -19,13 +19,9 @@ void findNextGreaterElements(int input[],int n)
     }
 }
 
-
-
 int main(){
     int input[] = { 2, 7, 3, 5, 4, 6, 8 };
     int n = sizeof(input) / sizeof(input[0]);
- 
     findNextGreaterElements(input, n);
- 
     return 0;
 }
