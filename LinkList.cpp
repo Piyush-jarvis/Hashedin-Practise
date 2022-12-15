@@ -158,6 +158,62 @@ bool detectLoop(Node* head)
     return false;
 }
 
+Node* floydDetectionLoop(Node* head)
+{
+    if(head == NULL)
+    {
+        return NULL;
+    }
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+        if(slow == fast)
+        {
+            cout<<"Cycle is Present @ " << slow->data<< endl;
+            return slow;
+        }
+    }
+    return NULL;
+}
+
+Node* getStatringNode(Node* head)
+{
+    if(head == NULL)
+    {
+        return NULL;
+    }
+
+    Node* intersection = floydDetectionLoop(head);
+    Node* slow = head;
+    while (slow != intersection)
+    {
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+    return slow;
+    
+}
+
+void removeloop(Node* head)
+{
+    if(head == NULL)
+    {
+        return;
+    }
+
+    Node* startNode = getStatringNode(head);
+    Node* temp = startNode;
+    while (temp->next != startNode)
+    {
+        temp = temp->next;
+    }
+    temp->next = NULL;
+}
+
 int main()
 {
     Node *node1 = new Node(0);
@@ -205,7 +261,7 @@ int main()
     printLinkedList(head);
     cout <<"Head data : "<< head->data << endl;
     cout <<"Tail data : "<< tail->data << endl;
-
+    cout << endl;
     tail->next = head->next;
     // cout <<"Head data : "<< head->data << endl;
     // cout <<"Tail data : "<< tail->data << endl;
@@ -213,14 +269,29 @@ int main()
 
     if(detectLoop(head))
     {
-        cout <<"Loop is Present" << endl;
+        cout <<"Loop is Present\n" << endl;
     }
     else
     {
-        cout <<"Loop is not present" << endl;
+        cout <<"Loop is not present\n" << endl;
+    }
+    
+    Node* start = getStatringNode(head);
+    cout <<"Starting Node is Present at: " << start->data<< endl;
+
+    removeloop(head);
+    printLinkedList(head);
+
+    if(floydDetectionLoop(head) != NULL)
+    {
+        cout <<"Cycle is Present\n" << endl;
+    }
+    else
+    {
+        cout <<"Cycle is not present\n" << endl;
     }
 
-
+    
     cout <<"\nThe Length of a Linked List is: " << lengthofLinkedList(head) << endl;
     return 0;
 }

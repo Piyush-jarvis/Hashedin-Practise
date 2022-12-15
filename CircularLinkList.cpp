@@ -80,6 +80,27 @@ void deleteNode(Node* &tail, int value)
     }
 }
 
+bool detectLoop(Node* head)
+{
+    if(head == NULL)
+    {
+        return false;
+    }
+    map<Node*, bool> visited;
+    Node* temp = head;
+    while (temp != NULL)
+    {
+        if(visited[temp] == true)
+        {
+            cout <<"Loop is present on : " << temp->data<< endl;
+            return true;
+        }
+        visited[temp] = true;
+        temp = temp->next;
+    }
+    return false;
+}
+
 void printLinkedList(Node* &tail)
 {
     Node* temp = tail;
@@ -107,20 +128,29 @@ int main(){
     cout <<"Insertion in circular linked list"<< endl;
     insertNode(tail,10, 25);//head
     printLinkedList(tail);
-    // insertNode(tail,25, 22);//head
-    // printLinkedList(tail);
-    // insertNode(tail,22, 26);//head
-    // printLinkedList(tail);
-    // insertNode(tail,26,42);//head
-    // printLinkedList(tail);
-    // insertNode(tail,25, 52);//head
-    // printLinkedList(tail);    
+    insertNode(tail,25, 22);//head
+    printLinkedList(tail);
+    insertNode(tail,22, 26);//head
+    printLinkedList(tail);
+    insertNode(tail,26,42);//head
+    printLinkedList(tail);
+    insertNode(tail,25, 52);//head
+    printLinkedList(tail);    
     deleteNode(tail,25);
     printLinkedList(tail);
     // deleteNode(tail,25);
     // printLinkedList(tail);
     // deleteNode(tail,42);
     // printLinkedList(tail);
+
+    if(detectLoop(head))
+    {
+        cout <<"Loop is Present" << endl;
+    }
+    else
+    {
+        cout <<"Loop is not present" << endl;
+    }
 
     return 0;
 }
