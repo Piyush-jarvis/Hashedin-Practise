@@ -1,0 +1,17 @@
+Node* getStatringNode(Node* head)
+{
+    if(head == NULL)
+    {
+        return NULL;
+    }
+
+    Node* intersection = floydDetectionLoop(head);
+    Node* slow = head;
+    while (slow != intersection)
+    {
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+    return slow;
+    
+}

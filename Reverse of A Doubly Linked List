@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node *prev;
+        
+    Node(int data)
+    {
+        this->data = data;
+        this->next = NULL;
+        this->prev = NULL;
+    }
+};
+*/
+
+Node* reverseDLL(Node* head)
+{   
+    Node* curr = head;
+    if(curr == NULL or curr->next == NULL)
+    {
+        return head;
+    }
+    while(curr->next != NULL)
+    {
+        curr = curr->next;
+    }
+    head = curr;
+    while(curr != NULL)
+    {
+        Node* temp = curr->next;
+        curr->next = curr->prev;
+        curr->prev = temp;
+        curr = curr->next;
+    }
+    return head;
+}
+
+

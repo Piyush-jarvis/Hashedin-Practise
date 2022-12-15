@@ -1,0 +1,77 @@
+/*************************************************
+    
+    class Node {
+        public :
+
+        int data;
+        Node *next;
+
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+
+*************************************************/
+Node* floydsDetection(Node* head)
+{
+    if(head == NULL)
+    {
+        return NULL;
+    }
+    Node* slow = head;
+    Node* fast = head;
+    while(fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;       
+        slow = slow->next;
+        if(slow == fast)
+        {
+            return slow;
+        }
+    }
+    return NULL;
+}
+
+Node* getstartedNode(Node* head)
+{
+    if(head == NULL)
+    {
+        return NULL;
+    }
+    
+    Node* intersection = floydsDetection(head);
+    if(intersection == NULL)
+    {
+        return NULL;
+    }
+    Node* slow = head;
+    
+    while(slow != intersection)
+    {
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+    return slow;
+}
+
+Node *removeLoop(Node *head)
+{
+    // Write your code here.
+    if(head == NULL)
+    {
+        return NULL;
+    }
+    Node* startofloop = getstartedNode(head);
+    if(startofloop == NULL)
+    {
+        return head;
+    }
+    Node* temp = startofloop;
+    while(temp->next != startofloop)
+    {
+        temp = temp->next;
+    }
+    temp->next = NULL;
+    return head;
+}
