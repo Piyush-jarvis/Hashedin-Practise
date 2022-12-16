@@ -38,7 +38,7 @@ class Solution{
     {
         // Your code here
         Node* slow = head;
-        Node* fast = head;
+        Node* fast = head->next;
         while(fast != NULL && fast->next != NULL)
         {
             fast = fast->next->next;
