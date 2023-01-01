@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+vector<int> reverseLevelOrder(TreeNode<int> *root){
+    // Write your code here.
+    vector<int>ve;
+    queue<TreeNode<int>*> q;
+    if(root==NULL) return ve;
+    q.push(root);
+    while(! q.empty())
+    {
+        TreeNode<int>* temp = q.front();
+        q.pop();
+        ve.push_back(temp->val);
+        if(temp->left)
+        {
+            q.push(temp->left);
+        }
+        if(temp->right)
+        {
+            q.push(temp->right);
+        }
+    }
+    reverse(ve.begin(),ve.end());
+    return ve;
+}
